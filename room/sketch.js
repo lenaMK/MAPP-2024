@@ -68,6 +68,9 @@ function drawVerticalLines(){
     }
 }
 
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
 
 
 
