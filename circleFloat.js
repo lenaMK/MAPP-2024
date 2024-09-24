@@ -25,8 +25,15 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 
-function drawCircleFloat(spectrum){
-    background(0o0, 0.25);
+
+function drawCircleFloat(spectrum, alpha){
+
+    
+
+    if (alpha == true)   
+        background(0o0, 0.25)
+    else
+        background(0o0)
 
         // Calculate the coordinates.
     circleX = windowWidth * noise(0.005 * frameCount);
@@ -69,5 +76,6 @@ function drawCircleFloat(spectrum){
     fill(circleHue, circleSat, circleColorB)
     
     circle(circleX, circleY, radius)
-
+    
+    
 }
