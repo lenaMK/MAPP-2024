@@ -15,7 +15,8 @@ function setUpVStrips(spectrum) {
 }
 
 function drawVStrips(spectrum) {
-    background(0, 0, 0); 
+    background(0o0); 
+
     soundHistory.push(spectrum)
 
     if (keyIsDown(DOWN_ARROW) === true) {
@@ -40,6 +41,7 @@ function drawVStrips(spectrum) {
     }
 
     if (keyIsDown(BACKSPACE) === true){
+        //clear history
         soundHistory = []
     }
 
@@ -54,9 +56,10 @@ function drawVStrips(spectrum) {
         for (var j = 0; j < soundHistory.length; j++){
             var rectY = j*bandHeight
         
-            noStroke()
+            
             
             var fillColor = map(soundHistory[j][i],0, 255, 0, 360)
+            stroke(fillColor, 200, 100)
             fill(fillColor, 200, 100)
             rect(rectX, rectY, bandWidth, bandHeight)
 
