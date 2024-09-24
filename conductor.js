@@ -21,6 +21,7 @@ function setup() {
     h = windowHeight
     cnv = createCanvas(w, h);
     colorMode(HSB, 360, 100, 100, 250);
+    angleMode(DEGREES)
 
     mic = new p5.AudioIn()
     mic.start()
@@ -34,7 +35,7 @@ function setup() {
 
 
 //in minutes
-var reduceTimeMin = 0.2
+var reduceTimeMin = 5
 var roomTimeMin = 5
 
 //in seconds
@@ -66,6 +67,8 @@ function keyPressed() {
     //when alpha is not false
     if (key === 'f') 
         background('white')
+
+        
 }
 
 
@@ -79,21 +82,15 @@ function draw() {
     
     if (frameCount == reduceStart){
         console.log("start reduce")
-        setupCircleFloat()
+        setUpVStrips(spectrum)
         
     }
     else if (frameCount < reduceEnd){
-        var alpha = false
-        drawCircleFloat(spectrum, alpha)
+        angle = 0
+        drawVStrips(spectrum, angle)
 
     }
-    else if (frameCount == roomStart){
-        
-    }
-    else if (frameCount < roomEnd){
-        var alpha = true
-        drawCircleFloat(spectrum, alpha)
-    }
+    
     /*
 
     if (frameCount == reduceStart){
