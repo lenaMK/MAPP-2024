@@ -6,8 +6,9 @@
         - conductor for the evening, organises different scripts for sound-based visualisations
         - MAPP 2024, lab scénographique, 28 septembre 2024
     docs and links:
-        - https://p5js.org/reference/p5/keyCode/
-        - https://www.toptal.com/developers/keycode
+        - using key codes: https://p5js.org/reference/p5/keyCode/
+        - key codes: https://www.toptal.com/developers/keycode
+        - quick HSB: https://www.learnui.design/blog/the-hsb-color-system-practicioners-primer.html
 
 */
 
