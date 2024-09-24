@@ -55,6 +55,17 @@ function mousePressed(){
     console.log(spectrum)
 }
 
+function keyPressed() {
+    if (key === 'r') {
+        background(0o0);
+    }
+  
+    if (keyCode === ENTER) {
+      // Code to run.
+    }
+  }
+
+
 function draw() {
 
 
