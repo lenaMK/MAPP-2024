@@ -17,17 +17,20 @@ function setupCircleFloat(){
     radius = minRadius
     grow = true
     circleHue = 210
-    circleSat = 50
+    circleSat = 100
     circleColorB = 80
 }
 
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
 
 function drawCircleFloat(spectrum){
-    background(0o0);
+    background(0o0, 0.25);
 
         // Calculate the coordinates.
-    circleX = windowWidth * noise(0.0005 * frameCount);
-    circleY = windowHeight * noise(0.0005 * frameCount + 10000);
+    circleX = windowWidth * noise(0.005 * frameCount);
+    circleY = windowHeight * noise(0.005 * frameCount + 10000);
 
     sound = spectrum[14]
 
@@ -54,6 +57,9 @@ function drawCircleFloat(spectrum){
             circleHue += 0.05
         if (circleSat > 360)
             circleSat = 0
+        if (circleHue > 360)
+            circleHue = 0
+
     } else {
         radius -= growSizeDecrease
     }
