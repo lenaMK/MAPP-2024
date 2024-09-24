@@ -41,7 +41,7 @@ function drawReduce() {
 
     if (fillColor == 360){
         radius = windowHeight
-        frameCount = 0 //can't use that 
+        
     }
     else if (radius > minSize) //become smaller
         radius = radius - speed

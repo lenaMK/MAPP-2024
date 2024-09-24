@@ -12,17 +12,7 @@ var topLeft, topRight, bottomLeft, bottomRight
 var varX, varY
 var boxMargin = 50
 function setupRoom() { 
-    colorMode(HSB, 360, 100, 100, 250);
-    createCanvas(windowWidth, windowHeight); 
-    angleMode(DEGREES)
    
-    //set mic source
-    mic = new p5.AudioIn()
-    mic.start()
-    playing = true
- 
-    fft = new p5.FFT(0.9, 128)  
-    fft.setInput(mic)
 
     topLeft = {x: windowWidth/4, y: windowHeight/4}
     topRight = {x: windowWidth/4*3, y: windowHeight/4}

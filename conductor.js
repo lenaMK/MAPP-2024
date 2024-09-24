@@ -9,10 +9,7 @@
 */
 
 
-//to start OBS
-//flatpak run com.obsproject.Studio
-
-var mic
+var mic, fft, spectrum
 
 
 
@@ -27,11 +24,15 @@ function setup() {
 
     mic = new p5.AudioIn()
     mic.start()
+
+    fft = new p5.FFT(0.8, 16)
+    fft.setInput(mic)
+
 }
 
 
 //in minutes
-var reduceTimeMin = 0.5
+var reduceTimeMin = 5
 var roomTimeMin = 0.5
 
 //in seconds
@@ -50,15 +51,28 @@ var roomStart = reduceEnd
 var roomEnd = roomStart + roomTimeFrames
 
 
+function mousePressed(){
+    console.log(spectrum)
+}
+
 function draw() {
+
+
+    spectrum = fft.analyze();
+
     //dans l'ordre chronologie
+    
     if (frameCount == reduceStart){
         console.log("start reduce")
-        setupReduce()
+        setupCircleFloat()
+        
     }
     else if (frameCount < reduceEnd){
-        drawReduce()
+        drawCircleFloat(spectrum)
+
     }
+
+    /*
     else if (frameCount == roomStart){
         console.log("start room")
         setupRoom()
@@ -71,7 +85,7 @@ function draw() {
         fill(0, 100, 100)
 
         text("N.D", w/2, h/2)
-    }
+    }*/
 }
 
 
