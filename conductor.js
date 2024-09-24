@@ -10,7 +10,7 @@
 
 
 var mic, fft, spectrum
-
+var alpha
 
 
 
@@ -28,16 +28,18 @@ function setup() {
     fft = new p5.FFT(0.8, 16)
     fft.setInput(mic)
 
+    alpha = 1
+
 }
 
 
 //in minutes
-var reduceTimeMin = 5
-var roomTimeMin = 0.5
+var reduceTimeMin = 0.2
+var roomTimeMin = 5
 
 //in seconds
 var reduceTimeSec = reduceTimeMin * 60 
-var roomTimeSec = reduceTimeMin * 60 
+var roomTimeSec = roomTimeMin * 60 
 
 // 60 frames per second
 var reduceTimeFrames = reduceTimeSec * 60 
@@ -53,17 +55,19 @@ var roomEnd = roomStart + roomTimeFrames
 
 function mousePressed(){
     console.log(spectrum)
+    
 }
 
 function keyPressed() {
     if (key === 'r') {
         background(0o0);
     }
-  
-    if (keyCode === ENTER) {
-      // Code to run.
-    }
-  }
+    //combine with a black background key for flash effect 
+    //when alpha is not false
+    if (key === 'f') 
+        background('white')
+}
+
 
 
 function draw() {
@@ -79,17 +83,35 @@ function draw() {
         
     }
     else if (frameCount < reduceEnd){
-        drawCircleFloat(spectrum)
+        var alpha = false
+        drawCircleFloat(spectrum, alpha)
 
     }
-
-    /*
     else if (frameCount == roomStart){
-        console.log("start room")
-        setupRoom()
+        
     }
     else if (frameCount < roomEnd){
-        drawRoom()
+        var alpha = true
+        drawCircleFloat(spectrum, alpha)
+    }
+    /*
+
+    if (frameCount == reduceStart){
+        console.log("start reduce")
+        setupCircleFloat()
+        
+    }
+    else if (frameCount < reduceEnd){
+        var alpha = false
+        drawCircleFloat(spectrum, alpha)
+
+    }
+    else if (frameCount == roomStart){
+        
+    }
+    else if (frameCount < roomEnd){
+        var alpha = true
+        drawCircleFloat(spectrum, alpha)
     }
     else {
         background(0o0);
