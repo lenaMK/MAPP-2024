@@ -1,6 +1,6 @@
 /*
     title: room
-    author: LenaMK & lab scénographique MAPP 2024
+    author: LenaMK
     date: 2024-09-12
     description:
 
@@ -11,8 +11,7 @@ var topLeft, topRight, bottomLeft, bottomRight
 
 var varX, varY
 var boxMargin = 50
-
-function setup() { 
+function setupRoom() { 
     colorMode(HSB, 360, 100, 100, 250);
     createCanvas(windowWidth, windowHeight); 
     angleMode(DEGREES)
@@ -32,7 +31,6 @@ function setup() {
     
     varX = 0
     varY = 0 
-    frameRate(30);
 } 
 
 
@@ -69,13 +67,8 @@ function drawVerticalLines(){
     }
 }
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-}
 
-
-
-function draw() {   
+function drawRoom() {   
 
     background(0o0); 
 
@@ -134,10 +127,6 @@ function draw() {
 
     drawRoomLines();
 
-    //text(String(spectrum), windowWidth-250, windowHeight-50)
-    //text(String(mic.getLevel()*1000), windowWidth-250, windowHeight-80)
-
-    
 } 
 
 

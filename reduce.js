@@ -1,6 +1,6 @@
 /*
-    title: room
-    author: LenaMK & lab scénographique MAPP 2024
+    title: reduce script
+    author: LenaMK
     date: 2024-09-16
     description:
         - to test gradients (For background): https://www.npmjs.com/package/p5.fillgradient
@@ -12,14 +12,8 @@ var radius, fillColor, speed
 var minSize = 50
 var smaller
 
-function setup() { 
-    colorMode(HSB, 360, 100, 100, 250);
-    createCanvas(windowWidth, windowHeight); 
-    angleMode(DEGREES)
-   
-    //set mic source
-    mic = new p5.AudioIn()
-    mic.start()
+function setupReduce() { 
+    
     playing = true
     
     radius = windowHeight
@@ -27,12 +21,7 @@ function setup() {
 } 
 
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-}
-
-
-function draw() {   
+function drawReduce() {   
     speed = frameCount / 100
     background(0o0); 
 
@@ -43,7 +32,7 @@ function draw() {
     //need to adapt to expected min/max sounds
     fillColor = map(sound, 0,1, 0, 360, true)
 
-    fill(fillColor, 100, 100)
+    fill(fillColor, 80, 80)
 
     text(String(mic.getLevel()*100), windowWidth-250, windowHeight-80)
     text(String(fillColor), windowWidth-250, windowHeight-50)
@@ -52,23 +41,13 @@ function draw() {
 
     if (fillColor == 360){
         radius = windowHeight
-        frameCount = 0
+        frameCount = 0 //can't use that 
     }
     else if (radius > minSize) //become smaller
         radius = radius - speed
 
 
-    /* go bigger, smaller, ...
-    if (radius > minSize && smaller == true) //become smaller
-        radius = radius - speed
-    else if (radius <= minSize)
-        smaller = false
-
-    if (radius < windowWidth & smaller == false)
-        radius = radius + speed
-    else if (radius >= windowWidth)
-        smaller = true
-   */
+   
     circle(windowWidth/2, windowHeight/2, radius)
 
     
