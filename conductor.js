@@ -5,6 +5,9 @@
     description:
         - conductor for the evening, organises different scripts for sound-based visualisations
         - MAPP 2024, lab scénographique, 28 septembre 2024
+    docs and links:
+        - https://p5js.org/reference/p5/keyCode/
+        - https://www.toptal.com/developers/keycode
 
 */
 
