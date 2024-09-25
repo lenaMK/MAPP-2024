@@ -89,7 +89,7 @@ function draw() {
     }
     else if (frameCount < reduceEnd){
         
-        drawStairs()
+        drawStairs2()
 
     }
 
