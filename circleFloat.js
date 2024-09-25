@@ -43,9 +43,6 @@ function drawCircleFloat(spectrum, alpha){
 
     fill('white')
 
-    text(String(sound), windowWidth-250, windowHeight-80)
-    text(String(circleColorB), windowWidth-250, windowHeight-50)
-
 
     //size 
     if (radius > maxRadius){

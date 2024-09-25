@@ -26,7 +26,9 @@ function drawLines(spectrum){
         
 
         var moveUp = map(spectrum[i], 0, 255, 1, 55)
-        stroke('white')
+
+        var colorFromSpectrum = map(spectrum[i], 0, 255, 0, 360)
+        stroke(colorFromSpectrum, 200, 100)
         strokeWeight(3)
 
         var diff = windowWidth - width

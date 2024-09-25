@@ -1,6 +1,6 @@
 
 var bands, bandWidth, soundHistory, soundHistoryMax
-var bandHeight
+var bandHeight, angle
 
 function setUpVStrips(spectrum) {
     bands = 16
@@ -20,22 +20,22 @@ function drawVStrips(spectrum) {
     soundHistory.push(spectrum)
 
     if (keyIsDown(DOWN_ARROW) === true) {
-            angle += 180
+
             translate(windowWidth, windowHeight)
-            rotate(angle)
+            rotate(180)
             console.log("rotate")
         
     }
     if (keyIsDown(RIGHT_ARROW) === true) {
-        angle += 45
-        rotate(angle)
+        
+        rotate(45)
         console.log("rotate")
     
     }
     if (keyIsDown(LEFT_ARROW) === true) {
-        angle -= 70
+
         translate(0, windowHeight)
-        rotate(angle)
+        rotate(-70)
         console.log("rotate")
     
     }

@@ -84,12 +84,12 @@ function draw() {
 
     if (frameCount == reduceStart){
         
-        setupLines(spectrum)
+        setUpVStrips(spectrum)
         
     }
     else if (frameCount < reduceEnd){
         
-        drawLines(spectrum)
+        drawVStrips(spectrum)
 
     }
 
