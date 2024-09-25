@@ -83,13 +83,13 @@ function draw() {
     spectrum = fft.analyze();
 
     if (frameCount == reduceStart){
-        console.log("start reduce")
-        setupWalls()
+        
+        setupStairs()
         
     }
     else if (frameCount < reduceEnd){
         
-        drawWalls()
+        drawStairs()
 
     }
 
