@@ -84,12 +84,12 @@ function draw() {
 
     if (frameCount == reduceStart){
         
-        setupStairs()
+        setupLines(spectrum)
         
     }
     else if (frameCount < reduceEnd){
         
-        drawStairs2()
+        drawLines(spectrum)
 
     }
 
