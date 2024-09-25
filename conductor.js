@@ -82,8 +82,20 @@ function draw() {
 
     spectrum = fft.analyze();
 
+    if (frameCount == reduceStart){
+        console.log("start reduce")
+        setupWalls()
+        
+    }
+    else if (frameCount < reduceEnd){
+        
+        drawWalls()
+
+    }
+
+  
     //dans l'ordre chronologie
-    
+    /*
     if (frameCount == reduceStart){
         console.log("start reduce")
         setUpVStrips(spectrum)
@@ -94,8 +106,19 @@ function draw() {
         drawVStrips(spectrum, angle)
 
     }
-    
-    /*
+
+ if (frameCount == reduceStart){
+        console.log("start reduce")
+        setupRoom()
+        
+    }
+    else if (frameCount < reduceEnd){
+        
+        drawRoom()
+
+    }
+
+
 
     if (frameCount == reduceStart){
         console.log("start reduce")
@@ -106,7 +129,16 @@ function draw() {
         var alpha = false
         drawCircleFloat(spectrum, alpha)
 
+    }else if (frameCount == roomStart){
+        
     }
+    else if (frameCount < roomEnd){
+        var alpha = true
+        drawCircleFloat(spectrum, alpha)
+    }
+    
+
+    
     else if (frameCount == roomStart){
         
     }
