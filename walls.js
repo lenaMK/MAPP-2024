@@ -5,7 +5,8 @@ var barWidth
 function setupWalls(){
     angle = atan(windowWidth / windowHeight)
 
-    barWidth = 50
+    barWidth = 40
+    diff = 25
 
 }
 
@@ -17,8 +18,8 @@ function drawWalls(){
     var nbStripes = (windowWidth/2) / (barWidth*2)
     for (var i = 1; i <= nbStripes; i ++){
         console.log(i)
-        var x1 = 50*i*2
-        var y1 = 50*i 
+        var x1 = barWidth*i*2
+        var y1 = (barWidth-diff)*i*2
     
         var height = windowHeight-(x1*2)
         
