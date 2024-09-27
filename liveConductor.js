@@ -15,7 +15,7 @@
 
 var mic, fft, spectrum
 var alpha
-var scene, speed
+var scene, speed, minSpeed, maxSpeed
 var bisouFontSize
 var bisou, bisouFrame
 
@@ -38,8 +38,11 @@ function setup() {
     fft.setInput(mic)
 
     scene = null
+    minSpeed = 0.0001
 
-    speed = 0.0005
+
+    maxSpeed = 0.005
+    speed = 0.0001
     bisou = false
     
 }
@@ -121,14 +124,11 @@ function keyPressed() {
     if (key === 'r') {
         background(0o0);
     }
-    //combine with a black background key for flash effect 
-    //when alpha is not false
-    if (key === 'f') 
-        background('white')
+
 
     if (key === 'p') {
         if (speed < maxSpeed)
-            speed = speed + 0.001
+            speed = speed + 0.0091
         else 
             speed = maxSpeed
         console.log(speed)

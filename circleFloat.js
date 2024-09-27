@@ -1,6 +1,6 @@
 var sound
 
-var growSoundFactor = 70 //to adapt to sound level
+var growSoundFactor = 112 //to adapt to sound level
 
 var growSizeIncrease = 3
 var growSizeDecrease = 2
@@ -19,10 +19,7 @@ function setupCircleFloat(){
     circleHue = 210
     circleSat = 100
     circleColorB = 80
-    minSpeed = 0.0001
-
-
-    maxSpeed = 0.005
+    
 
 }
 

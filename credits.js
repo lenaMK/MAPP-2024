@@ -47,12 +47,14 @@ function drawCredits(spectrum){
 //  add if clause here if bw is better
         
         var colorFromSpectrum = map(spectrum[spectrum.length-i], 0, 255, 0, 360)
+        stroke(colorFromSpectrum, 200, 0)
         fill(colorFromSpectrum, 200, 100)
         rect(rectX, rectY, rectWidth, rectHeight)
         stairWidth += growSize
 
     }
     var textColor = map(spectrum[0], 0, 255, 0, 360) 
+    stroke(textColor, 200, 0)
     fill(textColor, 200, 100)
     textSize(50)
     creditTime = frameCount - creditStart
