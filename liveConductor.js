@@ -15,7 +15,7 @@
 
 var mic, fft, spectrum
 var alpha
-var scene
+var scene, speed
 var bisouFontSize
 var bisou, bisouFrame
 
@@ -39,7 +39,7 @@ function setup() {
 
     scene = null
 
-    
+    speed = 0.0005
     bisou = false
     
 }
@@ -62,6 +62,10 @@ function mousePressed(){
     
 }
 
+function keyReleased() {
+   
+}
+
 function keyPressed() {
 
     if (key === '0') {
@@ -72,7 +76,9 @@ function keyPressed() {
         setupCircleFloat()
         scene = 1 
     }
-    else if (key === '2'){     
+    else if (key === '2'){    
+        stroke(99, 200, 100) 
+        background('black')
         scene = 2 
     }
     else if (key === '3') {
@@ -120,6 +126,21 @@ function keyPressed() {
     if (key === 'f') 
         background('white')
 
+    if (key === 'p') {
+        if (speed < maxSpeed)
+            speed = speed + 0.001
+        else 
+            speed = maxSpeed
+        console.log(speed)
+    }
+    if (key === 'm') {
+        if (speed > minSpeed)
+            speed = speed - 0.001
+        else   
+            speed = minSpeed
+
+        console.log(speed)
+    }
         
 }
 
@@ -138,11 +159,13 @@ function draw() {
         
     }else if (scene == 1){
         alpha = false
-        drawCircleFloat(spectrum, alpha)
+        drawCircleFloat(spectrum, alpha, speed)
         
     } else if (scene == 2){
         alpha = true
-        drawCircleFloat(spectrum, alpha)
+        speed = 0.005
+        
+        drawCircleFloat(spectrum, alpha, speed)
     } else if (scene == 3){
         drawLines(spectrum);
     } else if (scene == 4){

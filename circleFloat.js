@@ -5,13 +5,13 @@ var growSoundFactor = 70 //to adapt to sound level
 var growSizeIncrease = 3
 var growSizeDecrease = 2
 var colorSizeInscrease = 0.5
-var grow
-
+var grow, minSpeed, maxSpeed
 
 var radius, minRadius, maxRadius, circleX, circleY, circleColorB, circleHue, circleSat
 var noiseValue
 
 function setupCircleFloat(){
+    stroke('black')
     minRadius = windowHeight/8
     maxRadius = windowHeight/2
     radius = minRadius
@@ -19,6 +19,11 @@ function setupCircleFloat(){
     circleHue = 210
     circleSat = 100
     circleColorB = 80
+    minSpeed = 0.0001
+
+
+    maxSpeed = 0.005
+
 }
 
 function windowResized() {
@@ -26,7 +31,9 @@ function windowResized() {
 }
 
 
-function drawCircleFloat(spectrum, alpha){
+
+
+function drawCircleFloat(spectrum, alpha, speed){
 
     
 
@@ -36,8 +43,8 @@ function drawCircleFloat(spectrum, alpha){
         background(0o0)
 
         // Calculate the coordinates.
-    circleX = windowWidth * noise(0.005 * frameCount);
-    circleY = windowHeight * noise(0.005 * frameCount + 10000);
+    circleX = windowWidth * noise(speed * frameCount);
+    circleY = windowHeight * noise(speed * frameCount + 10000);
 
     sound = spectrum[14]
 
