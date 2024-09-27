@@ -1,19 +1,55 @@
 
 var nbLines, lineHeight, width, grow
+var maxWidth, angle
 
 function setupLines(spectrum){
     nbLines = spectrum.length
 
     lineHeight = windowHeight / nbLines
 
-    width = windowWidth
-
+    
+    maxWidth = windowWidth/3*2
+    width = maxWidth
     grow = false
+
+    angle = 0
 }
 
 
 
 function drawLines(spectrum){
+
+    if (keyIsDown(DOWN_ARROW) === true) {
+
+        translate(windowWidth, windowHeight)
+        rotate(180)
+        console.log("rotate")
+        
+    }
+    if (keyIsDown(RIGHT_ARROW) === true) {
+        
+        if (angle < 75 )
+            angle +=1
+        else
+            angle = -75
+
+        rotate(angle)
+        
+        console.log("rotate")
+
+    }
+    if (keyIsDown(LEFT_ARROW) === true) {
+
+        translate(-50, windowHeight/2)
+        rotate(-42)
+        console.log("rotate")
+
+    }
+
+    if (keyIsDown(BACKSPACE) === true){
+        width = maxWidth
+        grow = false
+    }
 
     background(0o0); 
 
