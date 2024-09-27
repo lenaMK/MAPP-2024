@@ -16,6 +16,8 @@
 var mic, fft, spectrum
 var alpha
 var scene
+var bisouFontSize
+var bisou, bisouFrame
 
 
 
@@ -27,6 +29,7 @@ function setup() {
     cnv = createCanvas(w, h);
     colorMode(HSB, 360, 100, 100, 250);
     angleMode(DEGREES)
+    textAlign(CENTER);
 
     mic = new p5.AudioIn()
     mic.start()
@@ -34,32 +37,25 @@ function setup() {
     fft = new p5.FFT(0.8, 16)
     fft.setInput(mic)
 
-    alpha = 1
+    scene = null
 
-    scene = 0
-
+    
+    bisou = false
+    
 }
 
 
-//in minutes
-var reduceTimeMin = 5
-var roomTimeMin = 5
-
-//in seconds
-var reduceTimeSec = reduceTimeMin * 60 
-var roomTimeSec = roomTimeMin * 60 
-
-// 60 frames per second
-var reduceTimeFrames = reduceTimeSec * 60 
-var roomTimeFrames = roomTimeSec * 60 
-
-//order
-var reduceStart = 1
-var reduceEnd = reduceStart + reduceTimeFrames
-
-var roomStart = reduceEnd 
-var roomEnd = roomStart + roomTimeFrames
 var alpha
+
+
+function faitBisou(){
+    background(0o0);
+    fill('white')
+    textSize(bisouFontSize)
+    
+    text("bisou", windowWidth/2, windowHeight/2)
+    
+}
 
 function mousePressed(){
     console.log(spectrum)
@@ -67,6 +63,55 @@ function mousePressed(){
 }
 
 function keyPressed() {
+
+    if (key === '0') {
+        setupToBlack()
+        scene = 0
+    }
+    else if (key === '1'){     
+        setupCircleFloat()
+        scene = 1 
+    }
+    else if (key === '2'){     
+        scene = 2 
+    }
+    else if (key === '3') {
+        setupLines(spectrum);
+        scene = 3 
+    }
+    else if (key === '4') {
+        setUpVStrips(spectrum)
+        
+        scene = 4 
+    }
+    else if (key === '9') {
+        setupCredits()
+        
+        scene = 9 
+    }
+
+    /*
+    else if (key === '5') {
+        scene = 5 
+    }
+    else if (key === '6') {
+        scene = 6 
+    }
+
+*/
+    if (key === 'b') {
+        bisou = !bisou
+        if (bisou == false){
+            background(0o0);
+            
+        } else {
+            bisouFontSize = 500
+            bisouFrame = frameCount
+        }
+    }
+
+
+
     if (key === 'r') {
         background(0o0);
     }
@@ -75,17 +120,6 @@ function keyPressed() {
     if (key === 'f') 
         background('white')
 
-    if (key === '1') {
-        setUpVStrips(spectrum)
-        scene = 1 
-    }
-    else if (key === '2'){
-        setupCircleFloat()
-        scene = 2 
-    }
-    else if (key === '3') {
-        scene = 3 
-    }
         
 }
 
@@ -93,79 +127,41 @@ function keyPressed() {
 
 function draw() {
 
-
     spectrum = fft.analyze();
     
-    if (scene == 1){
+    
+    
+
+
+    if (scene == 0){
+        drawToBlack()
         
-        drawVStrips(spectrum)
-    } else if (scene == 2){
+    }else if (scene == 1){
         alpha = false
         drawCircleFloat(spectrum, alpha)
-    } else if (scene == 3){
+        
+    } else if (scene == 2){
         alpha = true
         drawCircleFloat(spectrum, alpha)
-    }
+    } else if (scene == 3){
+        drawLines(spectrum);
+    } else if (scene == 4){
+        drawVStrips(spectrum)  
+    } else if (scene == 9){
+        drawCredits(spectrum)
+    } 
 
+    if (bisou == true){
+        var time = frameCount-bisouFrame
+        bisouFontSize -= time*3
+        
+        if (bisouFontSize < 5){
+            bisou = false
+            background(0o0);
+        }else
+         faitBisou()
+    }
   
-    //dans l'ordre chronologie
-    /*
-    if (frameCount == reduceStart){
-        console.log("start reduce")
-        setUpVStrips(spectrum)
-        
-    }
-    else if (frameCount < reduceEnd){
-        angle = 0
-        drawVStrips(spectrum, angle)
-
-    }
-
- if (frameCount == reduceStart){
-        console.log("start reduce")
-        setupRoom()
-        
-    }
-    else if (frameCount < reduceEnd){
-        
-        drawRoom()
-
-    }
-
-
-
-    if (frameCount == reduceStart){
-        console.log("start reduce")
-        setupCircleFloat()
-        
-    }
-    else if (frameCount < reduceEnd){
-        var alpha = false
-        drawCircleFloat(spectrum, alpha)
-
-    }else if (frameCount == roomStart){
-        
-    }
-    else if (frameCount < roomEnd){
-        var alpha = true
-        drawCircleFloat(spectrum, alpha)
-    }
-    
-
-    
-    else if (frameCount == roomStart){
-        
-    }
-    else if (frameCount < roomEnd){
-        var alpha = true
-        drawCircleFloat(spectrum, alpha)
-    }
-    else {
-        background(0o0);
-        fill(0, 100, 100)
-
-        text("N.D", w/2, h/2)
-    }*/
 }
 
 
