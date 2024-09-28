@@ -5,17 +5,17 @@ var growSoundFactor = 112 //to adapt to sound level
 var growSizeIncrease = 3
 var growSizeDecrease = 2
 var colorSizeInscrease = 0.5
-var grow, minSpeed, maxSpeed
-
 var radius, minRadius, maxRadius, circleX, circleY, circleColorB, circleHue, circleSat
 var noiseValue
+
+var colorChange
 
 function setupCircleFloat(){
     stroke('black')
     minRadius = windowHeight/8
     maxRadius = windowHeight/2
     radius = minRadius
-    grow = true
+
     circleHue = 210
     circleSat = 100
     circleColorB = 80
@@ -70,9 +70,20 @@ function drawCircleFloat(spectrum, alpha, speed){
 
     } else {
         radius -= growSizeDecrease
-    }
+    }1
 
-       
+    colorChange = random(10, 320)
+
+    if (keyIsDown(67) === true) {
+        if (circleHue < (360- colorChange))
+            circleHue += colorChange
+        else{
+            var diff = 360 - colorChange
+            circleHue = colorChange - diff
+        } 
+            
+        console.log("c", circleHue)
+    }   
 
     fill(circleHue, circleSat, circleColorB)
     
