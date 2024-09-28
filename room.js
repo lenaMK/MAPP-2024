@@ -6,14 +6,12 @@
 
 */
 
-var mic, fft, spectrum
 var topLeft, topRight, bottomLeft, bottomRight
 
 var varX, varY
 var boxMargin = 50
 function setupRoom() { 
    
-
     topLeft = {x: windowWidth/4, y: windowHeight/4}
     topRight = {x: windowWidth/4*3, y: windowHeight/4}
     bottomLeft = {x: windowWidth/4, y: windowHeight/4*3}
@@ -24,7 +22,7 @@ function setupRoom() {
 } 
 
 
-
+/*
 function drawRoomLines(){
     
     stroke('white')
@@ -56,17 +54,44 @@ function drawVerticalLines(){
 
     }
 }
+*/
 
+function drawRoom(spectrum) {   
 
-function drawRoom() {   
-
-    background(0o0); 
+    background('black'); 
 
     //get spectrum from fft analysis
     //spectrum = fft.analyze()
-    sound = mic.getLevel(0.5)*30 
+    var colorFromSpectrum = map(spectrum[0], 0, 255, 0, 360)
+        fill(colorFromSpectrum, 200, 100)
+        stroke(colorFromSpectrum, 200, 100)
+    
+    beginShape()     
+        vertex(0, 0)
+        vertex(topLeft.x, topLeft.y)
+        vertex(bottomLeft.x, bottomLeft.y)
+        vertex(0, windowHeight)
+        vertex(0,0)
+    endShape()
+
+    colorFromSpectrum = map(spectrum[4], 0, 255, 0, 360)
+    fill(colorFromSpectrum, 200, 100)
+    stroke(colorFromSpectrum, 200, 100)
+
+    beginShape()        
+        vertex(windowWidth, 0)
+        vertex(topRight.x, topRight.y)
+        vertex(bottomRight.x, bottomRight.y)
+        vertex(windowWidth, windowHeight)
+        vertex(windowWidth, 0)
+    endShape()
+    
+    
+
+} 
 
 
+/*
     var randomMove = random([0, 1, 2, 3, 4])
     console.log(randomMove)
     //if(randomMove = 0) stay  
@@ -112,11 +137,4 @@ function drawRoom() {
         }
     } 
 
-
-    fill('white')
-
-    drawRoomLines();
-
-} 
-
-
+*/
