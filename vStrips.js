@@ -8,10 +8,11 @@ function setUpVStrips(spectrum) {
     console.log(bandWidth)
 
 
-    bandHeight = 3
+    bandHeight = 5
     soundHistoryMax = windowHeight/bandHeight
 
     soundHistory = []
+    rectMode(CORNER)
 }
 
 function drawVStrips(spectrum) {
@@ -26,18 +27,12 @@ function drawVStrips(spectrum) {
             console.log("rotate")
         
     }
-    if (keyIsDown(RIGHT_ARROW) === true) {
-        
-        rotate(45)
-        console.log("rotate")
-    
+    if (keyIsDown(RIGHT_ARROW) === true){
+        rotate(45)    
     }
     if (keyIsDown(LEFT_ARROW) === true) {
-
         translate(0, windowHeight)
         rotate(-70)
-        console.log("rotate")
-    
     }
 
     if (keyIsDown(BACKSPACE) === true){
@@ -45,19 +40,16 @@ function drawVStrips(spectrum) {
         soundHistory = []
     }
 
-
-
     if (soundHistory.length > soundHistoryMax){
         soundHistory.splice(0,1)
     }
+
     for (var i = 0; i < bands ; i++){
         var rectX = i*bandWidth
 
         for (var j = 0; j < soundHistory.length; j++){
             var rectY = j*bandHeight
-        
-            
-            
+           
             var fillColor = map(soundHistory[j][i],0, 255, 0, 360)
             stroke(fillColor, 200, 100)
             fill(fillColor, 200, 100)
