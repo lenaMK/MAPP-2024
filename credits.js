@@ -27,10 +27,10 @@ function setupCredits() {
 
 }
 
-function drawCredits(spectrum){
+function drawCredits(spectrum, colorful){
     background('black')
 
-    fill('white')
+    
     nbStairs = 16
     growSize = (maxWidth-minWidth)/(nbStairs-2)
     stairWidth = minWidth
@@ -44,16 +44,24 @@ function drawCredits(spectrum){
         var rectWidth = stairWidth
         var rectHeight = stairHeight-i
 
-//  add if clause here if bw is better
+        //  add if clause here if bw is better
+        if (colorful == false){
+            fill('white')
+        } else{
+            var colorFromSpectrum = map(spectrum[spectrum.length-i], 0, 255, 0, 360)
+            stroke(colorFromSpectrum, 200, 0)
+        }
         
-        var colorFromSpectrum = map(spectrum[spectrum.length-i], 0, 255, 0, 360)
-        stroke(colorFromSpectrum, 200, 0)
         fill(colorFromSpectrum, 200, 100)
         rect(rectX, rectY, rectWidth, rectHeight)
         stairWidth += growSize
 
     }
-    var textColor = map(spectrum[0], 0, 255, 0, 360) 
+    var textColor
+    if (colorful)
+        textColor = map(spectrum[0], 0, 255, 0, 360) 
+    else 
+        textColor = 'white'
     stroke(textColor, 200, 0)
     fill(textColor, 200, 100)
     textSize(50)

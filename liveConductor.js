@@ -71,8 +71,12 @@ function keyReleased() {
 
 function keyPressed() {
 
-    if (key === '0') {
+    if (key === 'DELETE') {
         setupToBlack()
+        scene = -1
+    }
+    else if (key === '0') {
+        setupCredits()
         scene = 0
     }
     else if (key === '1'){     
@@ -153,9 +157,12 @@ function draw() {
     
     
 
-
-    if (scene == 0){
+    if (scene == -1){
         drawToBlack()
+    }
+    else if (scene == 0){
+        var colorful = false
+        drawCredits(spectrum, colorful)
         
     }else if (scene == 1){
         alpha = false
@@ -171,7 +178,8 @@ function draw() {
     } else if (scene == 4){
         drawVStrips(spectrum)  
     } else if (scene == 9){
-        drawCredits(spectrum)
+        var colorful = true
+        drawCredits(spectrum, colorful)
     } 
 
     if (bisou == true){
