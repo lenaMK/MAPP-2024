@@ -62,7 +62,7 @@ function drawCredits(spectrum, colorful){
         textColor = map(spectrum[0], 0, 255, 0, 360) 
     else 
         textColor = 'white'
-    stroke(textColor, 200, 0)
+    stroke('black')
     fill(textColor, 200, 100)
     textSize(50)
     creditTime = frameCount - creditStart
