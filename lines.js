@@ -49,6 +49,7 @@ function drawLines(spectrum){
     if (keyIsDown(BACKSPACE) === true){
         width = maxWidth
         grow = false
+        lineHeight = windowHeight / nbLines
     }
 
     background(0o0); 
@@ -77,6 +78,17 @@ function drawLines(spectrum){
 
     
 
+
+    if (width == 30){
+        grow = true
+    }
+
+    if (width == maxWidth){
+        grow = false
+    }
+
+
+
     if (grow == false){
         width -=1
         lineHeight -= 0.03
@@ -85,15 +97,6 @@ function drawLines(spectrum){
     else if (grow == true) {
         width +=1
         lineHeight += 0.03
-    }
-
-
-    if (width == 30){
-        grow = true
-    }
-
-    if (width == windowWidth){
-        grow = false
     }
 
 }
