@@ -38,11 +38,9 @@ function setup() {
     fft.setInput(mic)
 
     scene = null
-    minSpeed = 0.0001
-
-
+    minSpeed = 0.001
     maxSpeed = 0.005
-    speed = 0.0001
+    speed = minSpeed
     bisou = false
     
 }
@@ -53,7 +51,7 @@ var alpha
 
 function faitBisou(){
     background(0o0);
-    fill('white')
+    
     textSize(bisouFontSize)
     
     text("bisou", windowWidth/2, windowHeight/2)
@@ -65,53 +63,89 @@ function mousePressed(){
     
 }
 
-function keyReleased() {
-   
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
 }
+
+
 
 function keyPressed() {
 
-    if (key === 'DELETE') {
+    if (key === '0') {
+        //close curtains to black
         setupToBlack()
-        scene = -1
-    }
-    else if (key === '0') {
-        setupCredits()
         scene = 0
     }
     else if (key === '1'){     
+        //float circle
+        // c for color change
+        // p for speed+
+        // m for speed-
         setupCircleFloat()
         scene = 1 
     }
-    else if (key === '2'){    
+    else if (key === '2'){   
+        //float trailing circle
+        // c for color change
+        // p for speed+ (jumpy trail or r to refresh)
+        // m for speed- (jumpy trail or r to refresh)
         stroke(99, 200, 100) 
         background('black')
         scene = 2 
     }
     else if (key === '3') {
+        // boucy color 16 lines
+        // arrows
+        // ← twist to right
+        // → rotate on axis
+        // ↓ reverse horizontally
         setupLines(spectrum);
         scene = 3 
     }
     else if (key === '4') {
+        // vertical strips
+        // arrows 
+        // ← sharp diagonal (parallelogram)
+        // → bottom left corner
+        // ↓
         setUpVStrips(spectrum)
         
         scene = 4 
     }
-    else if (key === '9') {
-        setupCredits()
-        
-        scene = 9 
-    }
-
-    /*
     else if (key === '5') {
+        // building stairs
+        // arrows 
+        // ← toward top left coner
+        // → 90° from left to right
+        // ↓ reverse (top down)
+        setupStairs()
         scene = 5 
     }
     else if (key === '6') {
+        //setupRoom()
+        background('black')
         scene = 6 
     }
+    else if (key === '7') {
+        //setupCredits()
+        scene = 7 
+    }
+    else if (key === '8') {
+        //setup ()
+        scene = 8
+    } 
+    else if (key === '9') {
+        //Credits in color
+        setupCredits()
+        scene = 10
+    }  
+    else if (key === 's') {
+        //(start) credits in black and white 
+        setupCredits()
+        scene = 9 
+    }
 
-*/
     if (key === 'b') {
         bisou = !bisou
         if (bisou == false){
@@ -132,7 +166,7 @@ function keyPressed() {
 
     if (key === 'p') {
         if (speed < maxSpeed)
-            speed = speed + 0.0091
+            speed = speed + 0.001
         else 
             speed = maxSpeed
         console.log(speed)
@@ -154,33 +188,32 @@ function draw() {
 
     spectrum = fft.analyze();
     
-    
-    
-
-    if (scene == -1){
+    if (scene == 0){
         drawToBlack()
-    }
-    else if (scene == 0){
-        var colorful = false
-        drawCredits(spectrum, colorful)
-        
     }else if (scene == 1){
         alpha = false
         drawCircleFloat(spectrum, alpha, speed)
         
     } else if (scene == 2){
-        alpha = true
-        speed = 0.005
-        
+        alpha = true        
         drawCircleFloat(spectrum, alpha, speed)
     } else if (scene == 3){
         drawLines(spectrum);
     } else if (scene == 4){
         drawVStrips(spectrum)  
+    } else if (scene == 5){
+        drawStairs()  
+    } else if (scene == 6){
+        //drawRoom(spectrum)  
     } else if (scene == 9){
-        var colorful = true
+        var colorful = false
         drawCredits(spectrum, colorful)
     } 
+    else if (scene == 10){
+        var colorful = true
+        drawCredits(spectrum, colorful)
+        
+    }
 
     if (bisou == true){
         var time = frameCount-bisouFrame
